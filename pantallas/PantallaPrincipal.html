@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+    content="Tienda de colecciobales de todo tipo desde videojuegos y jueguetes hasta comics y revistas, todo desde nuestra tienda online." />
+    <meta name="keywords" content="Comics, Juguetes, Videojuegos, Figuras" />
+    <meta name="author" content="
+    José Alexis Silva Guerrero
+    Erik Alejandro Ramirez de Lira,
+    Oscar Oziel Padilla,
+    Alan Eduardo Guevara Hernandez,
+    Michelle Guadalupe Villagomez Lopez,
+    Dominic Garcia" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Geek Paradise Tienda de coleccionables</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700&amp;display=swap">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="shortcut icon" href="../assets/img/iconlog.png">
+    <style>
+        .card-img-top {
+            width: 100%;
+            height: 200px; /* Puedes ajustar esta altura según tus necesidades */
+            object-fit: cover; /* Esto asegura que la imagen se recorte correctamente */
+        }
+    </style>
+</head>
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top" id="mainNav">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a href="../index.html" class="navbar-brand" style="margin-right: 10%;">
+                <img src="../assets/img/logocompleto.png" alt="Logo Geek" title="logo de tienda" width="250px"
+                    style="filter: invert(100%);">
+            </a>
+
+            <div class="d-flex flex-grow-1 justify-content-center">
+                <form class="d-flex" id="search" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning" type="submit">
+                        <i class="bi bi-search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                            </svg>
+                        </i>
+                    </button>
+                </form>
+            </div>
+
+            <button data-bs-toggle="collapse" class="navbar-toggler navbar-toggler-right"
+                data-bs-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation" value="Menu">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item nav-link">
+                        <!-- Elementos de la barra de navegación -->
+
+                        <a href="../index.html" style="text-decoration: none;">
+                            <button type="button" class="btn btn-outline-info">Home</button>
+                        </a>
+            
+                        <a href="PantallaPrincipal.html" style="text-decoration: none;">
+                            <button type="button" class="btn btn-outline-warning">Juguetes</button>
+                        </a>
+
+                        <button type="button" class="btn btn-outline-danger">
+                            <i class="bi bi-heart-fill">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                </svg>
+                            </i>
+                        </button>
+
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-outline-info dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-fill">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                                    </svg>
+                                </i>
+                                <span id="usernameDisplay">Mi cuenta</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark position-absolute">
+                                <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                <li><a class="dropdown-item" href="#">Órdenes de Compra</a></li>
+                                <li><a class="dropdown-item" href="IniciarSesion.html">Iniciar sesión</a></li>
+                                <li><a class="dropdown-item" id="logoutLink" href="#">Cerrar sesión</a></li>
+                            </ul>
+                        </div>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                var loggedIn = document.cookie.split(';').some((item) => item.trim().startsWith('loggedIn='));
+                                if (loggedIn) {
+                                    var username = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+                                    document.getElementById('usernameDisplay').innerText = username;
+                                }
+                            });
+                        </script>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                var loggedIn = document.cookie.split(';').some((item) => item.trim().startsWith('loggedIn='));
+                                if (loggedIn) {
+                                    var username = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+                                    document.getElementById('usernameDisplay').innerText = username;
+                                }
+
+                                document.getElementById('logoutLink').addEventListener('click', function(e) {
+                                    e.preventDefault();
+                                    // Elimina la cookie de sesión estableciendo su fecha de expiración en el pasado
+                                    document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                                    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                                    // Redirige a la página principal
+                                    window.location.href = "PantallaPrincipal.html";
+                                });
+                            });
+                        </script>
+                        
+                        <button type="button" class="btn btn-outline-success">
+                            <i class="bi bi-cart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                </svg>
+                            </i>
+                            Carrito
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead">
+        <div class="intro-body">
+            <div class="container" style="margin-top: 7%;">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <!--Productos-->
+                        <div class="container mt-5">
+                            <div class="row" id="productos-container">
+                                <!-- Aquí se insertarán las tarjetas de productos -->
+                            </div>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    fetch('../productos.json')
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            const container = document.getElementById('productos-container');
+                                            data.forEach(producto => {
+                                                const card = `
+                                                    <div class="col-md-4 mb-4">
+                                                        <div class="card text-white bg-dark mb-3 h-100">
+                                                            <img src="../${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
+                                                            <div class="card-header">
+                                                                <a href="Producto.html?producto=${encodeURIComponent(JSON.stringify(producto))}" class="card-title h4" style="margin:0; text-decoration: none;">${producto.nombre}</a>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <p class="card-text h6">${producto.descripcion}</p>
+                                                                <p class="card-text h6 align-bottom"><strong>$${producto.precio}.00<small class="text-white small mb-0 h6"> MXN.</small></strong></p>
+                                                            </div>
+                                                            <div class="card-footer text-muted">
+                                                                <a href="#" style="margin-right:5px; text-decoration: none;">
+                                                                    <button type="button" class="btn btn-outline-danger">
+                                                                        <i class="bi bi-heart-fill">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                                                class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                                                <path fill-rule="evenodd"
+                                                                                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                                                            </svg>
+                                                                        </i>
+                                                                    </button>
+                                                                </a> 
+                                                                <a href="#" style="text-decoration: none;">
+                                                                    <button type="button" class="btn btn-outline-success">
+                                                                        <i class="bi bi-cart">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                                                            </svg>
+                                                                        </i>
+                                                                        Carrito
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                `;
+                                                container.insertAdjacentHTML('beforeend', card);
+                                            });
+                                        })
+                                        .catch(error => console.error('Error cargando los productos:', error));
+                                });
+                            </script>
+                        
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <footer class="footer bg-black py-4">
+        <div class="container text-center">
+            <ul class="list-inline mb-3">
+                <li class="list-inline-item">
+                    <a class="h6" href="#">Facebook</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="h6" href="#">Instagram</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="text-white h6" href="#">Términos y Condiciones</a>
+                </li>
+            </ul>
+            <small class="text-muted small mb-0 h6">&copy; 2024 Geek Paradise. Todos los derechos reservados.</small>
+        </div>
+    </footer>
+    <div class="map-clean"></div>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/script.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <?php #session_start();?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="https://cloud.aguascalientes.tecnm.mx/site/img/logo.png">
+    <title>SAS</title>
+</head>
+<body>
+    <nav class="navbar navbar-light navbar-expand-md fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand">
+            <?php #echo $_SESSION["user"];?>
+            </a>
+            <a class="navbar-brand" href="logout.php">Cerrar Sesión</a>
+            <button data-bs-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-bs-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="dropdown border-0" style="--bs-body-bg: var(--bs-indigo);">
+                    <a class="navbar-brand" aria-expanded="false" data-bs-toggle="dropdown" href="#" target="_blank" style="--bs-body-bg: var(--bs-navbar-brand-hover-color);">Herramientas</a>
+                    <div class="dropdown-menu dropdown-menu-dark">
+                        <a class="dropdown-item" href="NuevoCliente.php" style="--bs-body-color: #ffffff;color: rgb(255,255,255);">Nuevo Cliente</a>
+                        <a class="dropdown-item" href="NuevaCita.php" style="--bs-body-color: #ffffff;color: rgb(255,255,255);">Nueva Cita</a>
+                        <a class="dropdown-item" href="ClientesExistentes.php" style="--bs-body-color: #ffffff;color: rgb(255,255,255);">Clientes Existentes</a>
+                        <a class="dropdown-item" href="CitasProgramadas.php" style="--bs-body-color: #ffffff;color: rgb(255,255,255);">Citas programadas</a>
+                    </div>
+                </div>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item nav-link">
+                        <img src="../assets/img/logo_tecnm.png" width="200" style="filter: invert(100%) saturate(0%);">
+                        <img src="../assets/img/Picsart_22-10-12_16-34-44-824.png" width="230">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead" style="background-image: url('../assets/img/intro-bg.jpg');">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h6 id="words" class="brand-heading">Bienvenido</h6>
+                        <script>
+                            var text = [
+                                    "Bienvenido",
+                                    "Welcome",
+                                    "Bem-vindo",
+                                    "受欢迎的",
+                                    "Bienvenu",
+                                    "Willkommen",
+                                    "Benvenuto",
+                                    "喜ばしい"];
+                            var counter = 0;
+                            var elem = document.getElementById("words");
+                            var inst = setInterval(change,3000);
+                            function change() {
+                                elem.innerHTML=text[counter];
+                                counter++;
+                                if (counter>=text.length) {
+                                    counter=0;
+                                    //clearInterval(inst);
+                                }
+                            }
+                        </script>
+                        <script lang="JavaScript">
+                            function Ver_Hora()
+                            {
+                                var mihora=new Date();
+                                var horas=mihora.getHours().toString();
+                                var minutos=mihora.getMinutes().toString();
+                                if (minutos.length==1){
+                                    minutos="0"+minutos;
+                                }
+                                document.forms[0].mireloj.value=horas+" : "+minutos;
+                            }
+                        </script>
+                        <form>
+                            <h1 style="font-size: 200%;">
+                                <input type="text" size="6" name="mireloj" style="background-color: transparent; border: transparent; color: white; text-align: center;">
+                            </h1>
+                        </form>
+                        <script lang="JavaScript">
+                            var r=setInterval("Ver_Hora()",500);
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="map-clean"></div>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/script.min.js"></script>
+</body>
+</html> -->

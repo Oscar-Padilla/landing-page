@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="Tienda de colecciobales de todo tipo desde videojuegos y jueguetes hasta comics y revistas, todo desde nuestra tienda online." />
+    <meta name="keywords" content="Comics, Juguetes, Videojuegos, Figuras" />
+    <meta name="author" content="
+    José Alexis Silva Guerrero
+    Erik Alejandro Ramirez de Lira,
+    Oscar Oziel Padilla,
+    Alan Eduardo Guevara Hernandez,
+    Michelle Guadalupe Villagomez Lopez,
+    Dominic Garcia" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Geek Paradise Tienda de coleccionables</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="shortcut icon" href="assets/img/iconlog.png">
+    <style>
+        .carousel-item img {
+            width: 100%;
+            height: 650px; /* Ajusta la altura según sea necesario */
+            object-fit: cover;
+            filter: blur(4px) brightness(40%);
+        }
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+    </style>
+</head>
+
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
+    <!-- Modal -->
+    <div class="modal fade" id="modalTerminosCondiciones" tabindex="-1" aria-labelledby="modalTerminosCondicionesLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalTerminosCondicionesLabel">Términos y Condiciones</h3>
+                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Aquí puedes agregar el contenido de tus términos y condiciones -->
+                    <p class="h6">¡Bienvenido a Geek Paradise!</p>
+                    <p class="h6">Acepta nuestros términos y condiciones para poder disfrutar de nuestros servicios.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Overlay -->
+    <div id="overlay"></div>
+
+    <nav class="navbar navbar-light navbar-expand-md fixed-top" id="mainNav">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a href="index.html" class="navbar-brand" style="margin-right: 10%;">
+                <img src="assets/img/logocompleto.png" alt="Logo Geek" title="logo de tienda" width="250px"
+                    style="filter: invert(100%);">
+            </a>
+
+            <div class="d-flex flex-grow-1 justify-content-center">
+                <form class="d-flex" id="search" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning" type="submit">
+                        <i class="bi bi-search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                            </svg>
+                        </i>
+                    </button>
+                </form>
+            </div>
+
+            <button data-bs-toggle="collapse" class="navbar-toggler navbar-toggler-right"
+                data-bs-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation" value="Menu">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item nav-link">
+                        <!-- Elementos de la barra de navegación -->
+
+                        <a href="index.html" style="text-decoration: none;">
+                            <button type="button" class="btn btn-outline-info">Home</button>
+                        </a>
+            
+                        <a href="pantallas/PantallaPrincipal.html" style="text-decoration: none;">
+                            <button type="button" class="btn btn-outline-warning">Juguetes</button>
+                        </a>
+
+                        <button type="button" class="btn btn-outline-danger">
+                            <i class="bi bi-heart-fill">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                </svg>
+                            </i>
+                        </button>
+                        
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-outline-info dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-fill">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                                    </svg>
+                                </i>
+                                <span id="usernameDisplay">Mi cuenta</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark position-absolute">
+                                <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                <li><a class="dropdown-item" href="#">Órdenes de Compra</a></li>
+                                <li><a class="dropdown-item" href="pantallas/IniciarSesion.html">Iniciar sesión</a></li>
+                                <li><a class="dropdown-item" id="logoutLink" href="#">Cerrar sesión</a></li>
+                            </ul>
+                        </div>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                var loggedIn = document.cookie.split(';').some((item) => item.trim().startsWith('loggedIn='));
+                                if (loggedIn) {
+                                    var username = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+                                    document.getElementById('usernameDisplay').innerText = username;
+                                }
+                            });
+                        </script>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                var loggedIn = document.cookie.split(';').some((item) => item.trim().startsWith('loggedIn='));
+                                if (loggedIn) {
+                                    var username = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+                                    document.getElementById('usernameDisplay').innerText = username;
+                                }
+
+                                document.getElementById('logoutLink').addEventListener('click', function(e) {
+                                    e.preventDefault();
+                                    // Elimina la cookie de sesión estableciendo su fecha de expiración en el pasado
+                                    document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                                    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                                    // Redirige a la página principal
+                                    window.location.href = "pantallas/PantallaPrincipal.html";
+                                });
+                            });
+                        </script>
+                        
+                        <button type="button" class="btn btn-outline-success">
+                            <i class="bi bi-cart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                </svg>
+                            </i>
+                            Carrito
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="masthead">
+        <div class="intro-body">
+            <div class="container" style="margin-top: 1%;">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <!--Carousel-->
+                        <div id="productosCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner" id="carousel-inner">
+                                <!-- Aquí se insertarán los items del carrusel -->
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#productosCarousel"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Anterior</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#productosCarousel"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Siguiente</span>
+                            </button>
+                        </div>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                fetch('productos.json')
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        const carouselInner = document.getElementById('carousel-inner');
+                                        data.forEach((producto, index) => {
+                                            const activeClass = index === 0 ? 'active' : '';
+                                            const item = `
+                                                <div class="carousel-item ${activeClass}">
+                                                    <a href="pantallas/Producto.html?producto=${encodeURIComponent(JSON.stringify(producto))}">
+                                                        <img src="${producto.imagen}" class="d-block w-50 mx-auto" alt="${producto.nombre}">
+                                                    </a>
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <p class="h4">${producto.nombre}</p>
+                                                        <p class="h6">${producto.descripcion}</p>
+                                                    </div>
+                                                </div>
+                                            `;
+                                            carouselInner.insertAdjacentHTML('beforeend', item);
+                                        });
+                                    })
+                                    .catch(error => console.error('Error cargando los productos:', error));
+                            });
+                        </script>
+
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer bg-black py-4 fixed-bottom">
+            <div class="container text-center">
+                <ul class="list-inline mb-3">
+                    <li class="list-inline-item">
+                        <a class="h6" href="#">Facebook</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="h6" href="#">Instagram</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="text-white h6" href="#">Términos y Condiciones</a>
+                    </li>
+                </ul>
+                <small class="text-muted small mb-0 h6">&copy; 2024 Geek Paradise. Todos los derechos reservados.</small>
+            </div>
+        </footer>
+    </header>
+    <div class="map-clean"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var myModal = new bootstrap.Modal(document.getElementById('modalTerminosCondiciones'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            myModal.show();
+
+            $('#modalTerminosCondiciones').on('hidden.bs.modal', function (e) {
+                document.getElementById('overlay').style.display = 'none';
+            });
+        });
+    </script>
+    
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
+</body>
+
+</html>
