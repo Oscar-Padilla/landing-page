@@ -1,0 +1,20 @@
+[
+    {
+        "nombre": "Batman Returns Batman Michael Keaton Neca Articulado",
+        "imagen": "images/Imagen1.jpg",
+        "precio": "8200",
+        "descripcion": "Batman 1989 Película Michael Keaton Figura de acción a escala 1:4: ¡Gran Batman!"
+    },
+    {
+        "nombre": "DeLorean, Doc. Emmet, McFly en escala 8-1",
+        "imagen": "images/bttf.jpeg",
+        "precio": "2000",
+        "descripcion": "Paquete coleccionable con los personajes principales de Volver al futuro, con figuras de 25 cm de alto"
+    },
+    {
+        "nombre": "SWAMP THING VOL. 3",
+        "imagen": "images/swamp.jpg",
+        "precio": "410",
+        "descripcion": "Colección de tapa dura de THE SAGA OF THE SWAMP THING "
+    }
+]
