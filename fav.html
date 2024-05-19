@@ -137,15 +137,16 @@
     </div>
 
     <div class="container mt-3" id="favorites-container">
-        <!-- Las tarjetas se generarán dinámicamente aquí -->
+        <!-- tarjetas -->
     </div>
-
+    
     <script>
         // Función para crear las tarjetas
-        function createProductCard(product) {
+        function createProductCard(product, index) {
             const card = document.createElement('div');
             card.className = 'card mb-3';
             card.style.maxWidth = '540px';
+            card.setAttribute('data-index', index); // índice del producto
     
             card.innerHTML = `
                 <div class="row g-0">
@@ -161,7 +162,7 @@
                     </div>
                     <div class="col-md-3 d-flex flex-column justify-content-around align-items-center">
                         <button class="btn btn-success mb-2">Añadir al carrito</button>
-                        <button class="btn btn-danger">Eliminar</button>
+                        <button class="btn btn-danger delete-product">Eliminar</button> <!-- Añadimos una clase "delete-product" al botón -->
                     </div>
                 </div>
             `;
@@ -175,9 +176,17 @@
             fetch('favoritos.json')
                 .then(response => response.json())
                 .then(products => {
-                    products.forEach(product => {
-                        const card = createProductCard(product);
+                    products.forEach((product, index) => { // 
+                        const card = createProductCard(product, index);
                         container.appendChild(card);
+                    });
+    
+                    // Agregamos el evento de clic a los botones de eliminar
+                    container.querySelectorAll('.delete-product').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const index = parseInt(this.closest('.card').getAttribute('data-index')); // índice del producto
+                            deleteProduct(index); // función deleteProduct con el índice del producto
+                        });
                     });
                 })
                 .catch(error => {
@@ -185,13 +194,29 @@
                 });
         }
     
-        // Llamar a la función para renderizar las tarjetas al cargar la página
+        //  eliminar un producto
+        function deleteProduct(index) {
+            // lista de productos eliminados de las cookies
+            const deletedProducts = JSON.parse(getCookie('deletedProducts')) || [];
+            // índice del producto eliminado a la lista
+            deletedProducts.push(index);
+            // se gaurda la lista en las cookies
+            document.cookie = `deletedProducts=${JSON.stringify(deletedProducts)};path=/`;
+            // se elimina la tarjeta del DOM
+            document.querySelectorAll(`[data-index="${index}"]`).forEach(element => element.remove());
+        }
+    
+        // obtener el valor de una cookie por su nombre
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+    
+        // cargar las tarjetas al cargar la página
         document.addEventListener('DOMContentLoaded', renderProductCards);
     </script>
     
-    
-
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 
@@ -211,6 +236,8 @@
             <small class="text-muted small mb-0 h6">&copy; 2024 Geek Paradise. Todos los derechos reservados.</small>
         </div>
     </footer>
+
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
