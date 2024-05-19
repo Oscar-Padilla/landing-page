@@ -136,7 +136,7 @@
         <h1 class="text-center">Favoritos</h1>
     </div>
 
-    <div class="container mt-3 bg-dark" id="favorites-container">
+    <div class="container mt-3" id="favorites-container">
         <!-- tarjetas -->
     </div>
 
@@ -144,7 +144,7 @@
         // Función para crear las tarjetas
         function createProductCard(product, index) {
             const card = document.createElement('div');
-            card.className = 'card mb-3';
+            card.className = 'card mb-3 bg-dark';
             card.style.maxWidth = '540px';
             card.setAttribute('data-index', index); // índice del producto
 
