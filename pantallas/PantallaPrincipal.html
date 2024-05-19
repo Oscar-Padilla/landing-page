@@ -31,8 +31,8 @@
     <nav class="navbar navbar-light navbar-expand-md fixed-top" id="mainNav">
         <div class="container d-flex align-items-center justify-content-between">
             <a href="../index.html" class="navbar-brand" style="margin-right: 10%;">
-                <img src="../assets/img/logocompleto.png" alt="Logo Geek" title="logo de tienda" width="250px"
-                    style="filter: invert(100%);">
+                <img src="../assets/img/logocompleto.png" alt="Logo Geek" title="logo de tienda" width="250px" 
+                style="filter: invert(100%);">
             </a>
 
             <div class="d-flex flex-grow-1 justify-content-center">
@@ -40,10 +40,10 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-warning" type="submit">
                         <i class="bi bi-search">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-search" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                            class="bi bi-search" viewBox="0 0 16 16">
                                 <path
-                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                             </svg>
                         </i>
                     </button>
@@ -51,8 +51,8 @@
             </div>
 
             <button data-bs-toggle="collapse" class="navbar-toggler navbar-toggler-right"
-                data-bs-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation" value="Menu">
+             data-bs-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" 
+             aria-label="Toggle navigation" value="Menu">
                 <i class="fa fa-bars"></i>
             </button>
 
@@ -71,10 +71,10 @@
 
                         <button type="button" class="btn btn-outline-danger">
                             <i class="bi bi-heart-fill">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                class="bi bi-heart-fill" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
-                                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                     d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
                                 </svg>
                             </i>
                         </button>
@@ -119,8 +119,10 @@
                                     // Elimina la cookie de sesión estableciendo su fecha de expiración en el pasado
                                     document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                                     document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                                    // Muestra la alerta de sesión cerrada
+                                    alert('Sesión cerrada correctamente');
                                     // Redirige a la página principal
-                                    window.location.href = "PantallaPrincipal.html";
+                                    window.location.href = "IniciarSesion.html";
                                 });
                             });
                         </script>
@@ -128,9 +130,9 @@
                         <button type="button" class="btn btn-outline-success">
                             <i class="bi bi-cart">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-cart" viewBox="0 0 16 16">
-                                    <path
-                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                 class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path 
+                                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                                 </svg>
                             </i>
                             Carrito
@@ -173,10 +175,10 @@
                                                                 <a href="#" style="margin-right:5px; text-decoration: none;">
                                                                     <button type="button" class="btn btn-outline-danger">
                                                                         <i class="bi bi-heart-fill">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                                                                class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                                                            class="bi bi-heart-fill" viewBox="0 0 16 16">
                                                                                 <path fill-rule="evenodd"
-                                                                                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                                                                 d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
                                                                             </svg>
                                                                         </i>
                                                                     </button>
@@ -233,7 +235,6 @@
     <script src="../assets/js/script.min.js"></script>
 </body>
 </html>
-
 
 
 
