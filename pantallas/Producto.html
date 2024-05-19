@@ -39,6 +39,16 @@
             border-radius: 5px;
             margin-top: 20px;
         }
+        /*Reseñas*/
+        /* Para los estilos de las estrellas */
+        #ratingStars .fa-star {
+            font-size: 20px;
+            color: grey;
+            cursor: pointer;
+        }
+        #ratingStars .fa-star.checked {
+            color: gold;
+        }
     </style>
     <script src="https://www.paypal.com/sdk/js?client-id=AVcmtbKIcMqQEviM1Ao_kA8ZCTBwdz0UNanpG2rtVMqNiXOW8RyQiNyPbzGNoJKMm7pRvMGzrr9T2viY&currency=MXN"></script>
 
@@ -261,6 +271,79 @@
                                 });
                             </script>
                         
+<!--Reseñas-->
+<div class="comment-section">
+    <h3>Comentarios</h3>
+    <form id="commentForm">
+        <div class="mb-3">
+            <label for="commentName" class="form-label" placeholder="Usuario">Tu nombre</label>
+            <input type="text" class="form-control" id="commentName" required>
+        </div>
+        <div class="mb-3">
+            <label for="commentText" class="form-label">Tu comentario</label>
+            <textarea class="form-control" id="commentText" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Calificación</label>
+            <div id="ratingStars">
+                <i class="fa fa-star" data-value="1"></i>
+                <i class="fa fa-star" data-value="2"></i>
+                <i class="fa fa-star" data-value="3"></i>
+                <i class="fa fa-star" data-value="4"></i>
+                <i class="fa fa-star" data-value="5"></i>
+            </div>
+            <input type="hidden" id="ratingValue" name="ratingValue" required>
+        </div>
+        <button type="submit" class="btn btn-success">Enviar comentario</button>
+    </form>
+    <div id="commentsContainer"></div>
+</div>
+
+<!--Script para las reseñas-->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Manejo de estrellas de calificación
+        const stars = document.querySelectorAll('#ratingStars .fa-star');
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = this.getAttribute('data-value');
+                document.getElementById('ratingValue').value = rating;
+                stars.forEach(s => {
+                    s.classList.remove('checked');
+                    if (s.getAttribute('data-value') <= rating) {
+                        s.classList.add('checked');
+                    }
+                });
+            });
+        });
+    
+        // Manejo de comentarios
+        const commentForm = document.getElementById('commentForm');
+        commentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const commentName = document.getElementById('commentName').value;
+            const commentText = document.getElementById('commentText').value;
+            const ratingValue = document.getElementById('ratingValue').value;
+            const commentsContainer = document.getElementById('commentsContainer');
+    
+            const newComment = document.createElement('div');
+            newComment.classList.add('comment');
+            newComment.innerHTML = `
+                <p><strong>${commentName}</strong></p>
+                <p>${commentText}</p>
+                <p>Calificación: ${ratingValue} estrellas</p>
+            `;
+            commentsContainer.appendChild(newComment);
+    
+            // Limpiar el formulario
+            document.getElementById('commentName').value = '';
+            document.getElementById('commentText').value = '';
+            document.getElementById('ratingValue').value = '';
+            stars.forEach(s => s.classList.remove('checked'));
+        });
+    });  
+</script>
+
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
                             <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
