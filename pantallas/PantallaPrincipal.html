@@ -130,48 +130,18 @@
                                 <li><a class="dropdown-item" id="logoutLink" href="#">Cerrar sesión</a></li>
                             </ul>
                         </div>
-
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function() {
-                                var loggedIn = document.cookie.split(';').some((item) => item.trim().startsWith('loggedIn='));
-                                if (loggedIn) {
-                                    var username = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-                                    document.getElementById('usernameDisplay').innerText = username;
-                                }
-                            });
-                        </script>
-
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function() {
-                                var loggedIn = document.cookie.split(';').some((item) => item.trim().startsWith('loggedIn='));
-                                if (loggedIn) {
-                                    var username = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-                                    document.getElementById('usernameDisplay').innerText = username;
-                                }
-
-                                document.getElementById('logoutLink').addEventListener('click', function(e) {
-                                    e.preventDefault();
-                                    // Elimina la cookie de sesión estableciendo su fecha de expiración en el pasado
-                                    document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                                    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                                    // Muestra la alerta de sesión cerrada
-                                    alert('Sesión cerrada correctamente');
-                                    // Redirige a la página principal
-                                    window.location.href = "IniciarSesion.html";
-                                });
-                            });
-                        </script>
-                        
-                        <button type="button" class="btn btn-outline-success">
-                            <i class="bi bi-cart">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-cart" viewBox="0 0 16 16">
-                                    <path 
-                                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                                </svg>
-                            </i>
-                            Carrito
-                        </button>
+                        <a href="../carrito.html" style="text-decoration: none;">
+                            <button type="button" class="btn btn-outline-success">
+                                <i class="bi bi-cart">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-cart" viewBox="0 0 16 16">
+                                        <path 
+                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                    </svg>
+                                </i>
+                                Carrito
+                            </button>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -182,15 +152,11 @@
             <div class="container" style="margin-top: 7%;">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                        <!-- Formulario de Búsqueda -->
-
-            
                         <!-- Productos -->
                         <div class="container mt-5">
                             <div class="row" id="productos-container">
                                 <!-- Aquí se insertarán las tarjetas de productos -->
                             </div>
-            
                             <script>
                                 document.addEventListener('DOMContentLoaded', function() {
                                     fetch('../productos.json')
@@ -215,21 +181,18 @@
                                                                     <i class="bi bi-heart-fill">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
                                                                         class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                                                            <path fill-rule="evenodd"
-                                                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
                                                                         </svg>
                                                                     </i>
                                                                 </button>
-                                                                <a href="#" style="text-decoration: none;">
-                                                                    <button type="button" class="btn btn-outline-success">
-                                                                        <i class="bi bi-cart">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                                                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                                                                            </svg>
-                                                                        </i>
-                                                                        Carrito
-                                                                    </button>
-                                                                </a>
+                                                                <button type="button" class="btn btn-outline-success" onclick="agregarCarrito('${producto.nombre}')">
+                                                                    <i class="bi bi-cart">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                                                        </svg>
+                                                                    </i>
+                                                                    Carrito
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -253,8 +216,22 @@
                                         }
                                     }
                                 }
+
+                                function agregarCarrito(productoNombre) {
+                                    let producto = data.find(item => item.nombre === productoNombre);
+                                    if (producto) {
+                                        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+                                        if (!carrito.find(item => item.nombre === producto.nombre)) {
+                                            carrito.push(producto);
+                                            localStorage.setItem('carrito', JSON.stringify(carrito));
+                                            alert('Producto agregado al carrito');
+                                        } else {
+                                            alert('Este producto ya está en el carrito');
+                                        }
+                                    }
+                                }
                             </script>
-            
+
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
                             <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>

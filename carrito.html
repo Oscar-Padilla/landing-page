@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="description"
-    content="Tienda de colecciobales de todo tipo desde videojuegos y jueguetes hasta comics y revistas, todo desde nuestra tienda online." />
+        content="Tienda de colecciobales de todo tipo desde videojuegos y jueguetes hasta comics y revistas, todo desde nuestra tienda online." />
     <meta name="keywords" content="Comics, Juguetes, Videojuegos, Figuras" />
     <meta name="author" content="
     José Alexis Silva Guerrero
@@ -15,19 +16,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Geek Paradise Tienda de coleccionables</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="shortcut icon" href="assets/img/iconlog.png">
     <style>
         .card-img-top {
             width: 100%;
-            height: 200px; /* Puedes ajustar esta altura según tus necesidades */
-            object-fit: cover; /* Esto asegura que la imagen se recorte correctamente */
+            height: 200px;
+            /* Puedes ajustar esta altura según tus necesidades */
+            object-fit: cover;
+            /* Esto asegura que la imagen se recorte correctamente */
         }
     </style>
+    <script src="https://www.paypal.com/sdk/js?client-id=AVcmtbKIcMqQEviM1Ao_kA8ZCTBwdz0UNanpG2rtVMqNiXOW8RyQiNyPbzGNoJKMm7pRvMGzrr9T2viY&currency=MXN"></script>
+
 </head>
+
 <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
+    <!-- Modal -->
+    <div class="modal fade" id="paypalModal" tabindex="-1" aria-labelledby="paypalModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paypalModalLabel">Comprar con PayPal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="paypal-button-container"></div>
+
+                    <script>
+                        paypal.Buttons({
+                            style: {
+                                color: 'blue',
+                                shape: 'pill',
+                                label: 'pay'
+                            },
+                            createOrder: function (data, actions) {
+                                return actions.order.create({
+                                    purchase_units: [{
+                                        amount: {
+                                            value: total
+                                        }
+                                    }]
+                                });
+                            },
+                            onApprove: function (data, actions) {
+                                alert("Pago Aprobado")
+                                actions.order.capture().then(function (detalles) {
+
+                                });
+                            },
+                            onCancel: function (data) {
+                                alert("Pago Cancelado");
+                                console.log(data);
+                            }
+                        }).render('#paypal-button-container');
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <nav class="navbar navbar-light navbar-expand-md fixed-top" id="mainNav">
         <div class="container d-flex align-items-center justify-content-between">
             <a href="index.html" class="navbar-brand" style="margin-right: 10%;">
@@ -123,19 +174,27 @@
                             <div class="row" id="productos-container">
                                 <!-- Aquí se insertarán las tarjetas de productos -->
                             </div>
-    
+
                             <script>
+                                let total = 0;
                                 document.addEventListener('DOMContentLoaded', function() {
-                                    const loadFavoritesFromLocalStorage = () => {
-                                        return JSON.parse(localStorage.getItem('favoritos')) || [];
+                                    const loadCarritoFromLocalStorage = () => {
+                                        return JSON.parse(localStorage.getItem('carrito')) || [];
                                     };
-                            
+                                
                                     const renderProducts = (products) => {
                                         const container = document.getElementById('productos-container');
+                                        const comprarButtonContainer = document.getElementById('comprar-button-container');
+                                        container.innerHTML = ''; // Limpiar contenedor
+                                        total = 0;  // Reiniciar total
+
                                         if (products.length === 0) {
-                                            container.innerHTML = '<p class="h4">No tienes productos en favoritos.</p>';
+                                            container.innerHTML = '<p class="h4">No tienes productos en el carrito.</p>';
+                                            comprarButtonContainer.style.display = 'none'; // Ocultar botón de comprar
                                         } else {
                                             products.forEach((producto, index) => {
+                                                total += Number(producto.precio);  // Sumar el precio del producto al total asegurando que es un número
+                                
                                                 const card = `
                                                     <div class="col-md-4 mb-4" id="producto-${index}">
                                                         <div class="card text-white bg-dark mb-3 h-100">
@@ -148,20 +207,22 @@
                                                                 <p class="card-text h6 align-bottom"><strong>$${producto.precio}.00<small class="text-white small mb-0 h6"> MXN.</small></strong></p>
                                                             </div>
                                                             <div class="card-footer text-muted">
-                                                                <button type="button" class="btn btn-outline-danger eliminar-producto" data-id="${index}">
-                                                                    <i class="bi bi-heartbreak-fill">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
-                                                                            <path d="M8.931.586 7 3l1.5 4-2 3L8 15C22.534 5.396 13.757-2.21 8.931.586M7.358.77 5.5 3 7 7l-1.5 3 1.815 4.537C-6.533 4.96 2.685-2.467 7.358.77"/>
+                                                                <button type="button" class="btn btn-outline-danger" onclick="agregarFavorito('${producto.nombre}')">
+                                                                    <i class="bi bi-heart-fill">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                                                        class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
                                                                         </svg>
                                                                     </i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-outline-success" onclick="agregarCarrito('${producto.nombre}')">
-                                                                    <i class="bi bi-cart">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                                                <button type="button" class="btn btn-outline-danger eliminar-producto" data-id="${index}">
+                                                                    <i class="bi bi-cart-x">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-x" viewBox="0 0 16 16">
+                                                                            <path d="M7.354 5.646a.5.5 0 1 0-.708.708L7.793 7.5 6.646 8.646a.5.5 0 1 0 .708.708L8.5 8.207l1.146 1.147a.5.5 0 0 0 .708-.708L9.207 7.5l1.147-1.146a.5.5 0 0 0-.708-.708L8.5 6.793z"/>
+                                                                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
                                                                         </svg>
                                                                     </i>
-                                                                    Carrito
+                                                                    Quitar del carrito
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -169,7 +230,12 @@
                                                 `;
                                                 container.insertAdjacentHTML('beforeend', card);
                                             });
-
+                                
+                                            // Mostrar el total
+                                            const totalContainer = document.getElementById('total-container');
+                                            totalContainer.innerHTML = `<p class="h4">Total: $${total}.00 MXN</p>`;
+                                            comprarButtonContainer.style.display = 'block';
+                                
                                             // Añadir evento de clic para eliminar tarjetas
                                             document.querySelectorAll('.eliminar-producto').forEach(button => {
                                                 button.addEventListener('click', function () {
@@ -179,37 +245,45 @@
                                                         producto.remove();
                                                     }
                                                     // Actualizar favoritos en localStorage y eliminar el producto
-                                                    const updatedFavorites = products.filter((_, index) => index != productoId);
-                                                    localStorage.setItem('favoritos', JSON.stringify(updatedFavorites));
-                                                    alert("Producto eliminado de favoritos.");
+                                                    const updatedCarrito = products.filter((_, index) => index != productoId);
+                                                    localStorage.setItem('carrito', JSON.stringify(updatedCarrito));
+                                                    renderProducts(updatedCarrito);
+                                                    alert("Producto eliminado del carrito.");
                                                 });
                                             });
                                         }
                                     };
-
-                                    const favoritos = loadFavoritesFromLocalStorage();
-                                    renderProducts(favoritos);
+                                
+                                    const carrito = loadCarritoFromLocalStorage();
+                                    renderProducts(carrito);
                                 });
-                                function agregarCarrito(productoNombre) {
+
+                                function agregarFavorito(productoNombre) {
                                     let producto = data.find(item => item.nombre === productoNombre);
                                     if (producto) {
-                                        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-                                        if (!carrito.find(item => item.nombre === producto.nombre)) {
-                                            carrito.push(producto);
-                                            localStorage.setItem('carrito', JSON.stringify(carrito));
-                                            alert('Producto agregado al carrito');
+                                        let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+                                        if (!favoritos.find(item => item.nombre === producto.nombre)) {
+                                            favoritos.push(producto);
+                                            localStorage.setItem('favoritos', JSON.stringify(favoritos));
+                                            alert('Producto agregado a favoritos');
                                         } else {
-                                            alert('Este producto ya está en el carrito');
+                                            alert('Este producto ya está en favoritos');
                                         }
                                     }
                                 }
                             </script>
+
+                            <div id="total-container" class="mt-4"></div>
+                            <div id="comprar-button-container" class="mt-4">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#paypalModal">
+                                    Comprar
+                                </button>
+                            </div>
                             
-    
+
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
                             <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
-    
                         </div>
                     </div>
                 </div>
@@ -236,4 +310,5 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/script.min.js"></script>
 </body>
+
 </html>
