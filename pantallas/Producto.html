@@ -196,7 +196,7 @@
     </nav>
     <header class="masthead">
         <div class="intro-body">
-            <div class="container" style="margin-top: 1%;">
+            <div class="container" style="margin-top: 7%;">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <div class="container mt-5">
@@ -211,30 +211,26 @@
                                     <small class="text-muted small mb-0 h6">Precio:</small>
                                     <p id="product-price" class="h6"></p>
 
-                                    <a href="../fav.html" style="text-decoration: none;">
-                                        <button type="button" class="btn btn-outline-danger">
-                                            <i class="bi bi-heart-fill">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                                    <path fill-rule="evenodd"
-                                                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
-                                                </svg>
-                                            </i>
-                                        </button>
-                                    </a>
+                                    <button type="button" class="btn btn-outline-danger" onclick="agregarFavorito(productoData)">
+                                        <i class="bi bi-heart-fill">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                            </svg>
+                                        </i>
+                                    </button>
 
-                                    <a href="#" style="text-decoration: none;">
-                                        <button type="button" class="btn btn-outline-success">
-                                            <i class="bi bi-cart">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                                                </svg>
-                                            </i>
-                                            Carrito
-                                        </button>
-                                    </a>
+                                    <button type="button" class="btn btn-outline-success" onclick="agregarCarrito(productoData)">
+                                        <i class="bi bi-cart">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                            </svg>
+                                        </i>
+                                        Carrito
+                                    </button>
 
                                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                                         data-bs-target="#paypalModal">
@@ -255,23 +251,43 @@
                                     document.getElementById('product-description').innerText = productoData.descripcion;
                                     document.getElementById('product-price').innerText = "$" + productoData.precio + ".00 MXN.";
                                 });
+                                function agregarFavorito(producto) {
+                                    let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+                                    if (!favoritos.find(item => item.nombre === producto.nombre)) {
+                                        favoritos.push(producto);
+                                        localStorage.setItem('favoritos', JSON.stringify(favoritos));
+                                        alert('Producto agregado a favoritos');
+                                    } else {
+                                        alert('Este producto ya está en favoritos');
+                                    }
+                                }
+
+                                function agregarCarrito(producto) {
+                                    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+                                    if (!carrito.find(item => item.nombre === producto.nombre)) {
+                                        carrito.push(producto);
+                                        localStorage.setItem('carrito', JSON.stringify(carrito));
+                                        alert('Producto agregado al carrito');
+                                    } else {
+                                        alert('Este producto ya está en el carrito');
+                                    }
+                                }
                             </script>
 
                             <!--Reseñas-->
-                            <div class="comment-section">
+                            <div class="comment-section mt-4">
                                 <h3>Comentarios</h3>
                                 <form id="commentForm">
-                                    <div class="mb-3">
-                                        <label for="commentName" class="form-label" placeholder="Usuario">Tu
-                                            nombre</label>
+                                    <div class="mt-3">
+                                        <label for="commentName" class="form-label h5" placeholder="Usuario">Tu nombre</label>
                                         <input type="text" class="form-control" id="commentName" required>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="commentText" class="form-label">Tu comentario</label>
+                                    <div class="mt-3">
+                                        <label for="commentText" class="form-label h5">Tu comentario</label>
                                         <textarea class="form-control" id="commentText" rows="3" required></textarea>
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Calificación</label>
+                                    <div class="mt-3">
+                                        <label class="form-label h5">Calificación</label>
                                         <div id="ratingStars">
                                             <i class="fa fa-star" data-value="1"></i>
                                             <i class="fa fa-star" data-value="2"></i>
@@ -281,7 +297,7 @@
                                         </div>
                                         <input type="hidden" id="ratingValue" name="ratingValue" required>
                                     </div>
-                                    <button type="submit" class="btn btn-success">Enviar comentario</button>
+                                    <button type="submit" class="btn btn-success mt-4">Enviar comentario</button>
                                 </form>
                                 <div id="commentsContainer"></div>
                             </div>
