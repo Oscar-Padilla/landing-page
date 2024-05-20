@@ -26,6 +26,40 @@
             object-fit: cover; /* Esto asegura que la imagen se recorte correctamente */
         }
     </style>
+    <!--Busqueda-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const productosContainer = document.getElementById('productos-container');
+            let data; // Variable para almacenar los datos de los productos
+    
+            // Cargar los datos de los productos
+            fetch('../productos.json')
+                .then(response => response.json())
+                .then(productos => {
+                    data = productos; // Asignamos el resultado de la petición a la variable data
+                    mostrarProductos(data);
+                })
+                .catch(error => console.error('Error cargando los productos:', error));
+    
+
+    
+            // Agregar evento de escucha al campo de búsqueda
+            searchInput.addEventListener('input', function(event) {
+                const input = event.target.value.toLowerCase();
+                const cards = document.querySelectorAll('#productos-container .card');
+                cards.forEach(card => {
+                    const title = card.querySelector('.card-title').textContent.toLowerCase();
+                    if (title.includes(input) || input === '') {
+                        card.parentElement.style.display = '';
+                    } else {
+                        card.parentElement.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+    
 </head>
 <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
     <nav class="navbar navbar-light navbar-expand-md fixed-top" id="mainNav">
@@ -36,18 +70,17 @@
             </a>
 
             <div class="d-flex flex-grow-1 justify-content-center">
-                <form class="d-flex" id="search" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" id="searchForm" role="search">
+                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-warning" type="submit">
                         <i class="bi bi-search">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
-                            class="bi bi-search" viewBox="0 0 16 16">
-                                <path
-                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                             </svg>
                         </i>
                     </button>
                 </form>
+                
             </div>
 
             <button data-bs-toggle="collapse" class="navbar-toggler navbar-toggler-right"
@@ -149,16 +182,15 @@
             <div class="container" style="margin-top: 7%;">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                        <!--Productos-->
+                        <!-- Formulario de Búsqueda -->
+
+            
+                        <!-- Productos -->
                         <div class="container mt-5">
                             <div class="row" id="productos-container">
                                 <!-- Aquí se insertarán las tarjetas de productos -->
                             </div>
-
-                            <script>
-                                
-                            </script>
-                            
+            
                             <script>
                                 document.addEventListener('DOMContentLoaded', function() {
                                     fetch('../productos.json')
@@ -179,7 +211,6 @@
                                                                 <p class="card-text h6 align-bottom"><strong>$${producto.precio}.00<small class="text-white small mb-0 h6"> MXN.</small></strong></p>
                                                             </div>
                                                             <div class="card-footer text-muted">
-
                                                                 <button type="button" class="btn btn-outline-danger" onclick="agregarFavorito('${producto.nombre}')">
                                                                     <i class="bi bi-heart-fill">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
@@ -199,7 +230,6 @@
                                                                         Carrito
                                                                     </button>
                                                                 </a>
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -209,29 +239,45 @@
                                         })
                                         .catch(error => console.error('Error cargando los productos:', error));
                                 });
+            
                                 function agregarFavorito(productoNombre) {
-                                        let producto = data.find(item => item.nombre === productoNombre);
-                                        if (producto) {
-                                            let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
-                                            if (!favoritos.find(item => item.nombre === producto.nombre)) {
-                                                favoritos.push(producto);
-                                                localStorage.setItem('favoritos', JSON.stringify(favoritos));
-                                                alert('Producto agregado a favoritos');
-                                            } else {
-                                                alert('Este producto ya está en favoritos');
-                                            }
+                                    let producto = data.find(item => item.nombre === productoNombre);
+                                    if (producto) {
+                                        let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+                                        if (!favoritos.find(item => item.nombre === producto.nombre)) {
+                                            favoritos.push(producto);
+                                            localStorage.setItem('favoritos', JSON.stringify(favoritos));
+                                            alert('Producto agregado a favoritos');
+                                        } else {
+                                            alert('Este producto ya está en favoritos');
                                         }
                                     }
+                                }
+            
+                                // Script para la búsqueda de productos
+                                document.getElementById('searchForm').addEventListener('submit', function(event) {
+                                    event.preventDefault();
+                                    var input = document.getElementById('searchInput').value.toLowerCase();
+                                    var cards = document.querySelectorAll('#productos-container .card');
+                                    cards.forEach(function(card) {
+                                        var title = card.querySelector('.card-title').textContent.toLowerCase();
+                                        if (title.includes(input)) {
+                                            card.parentElement.style.display = '';
+                                        } else {
+                                            card.parentElement.style.display = 'none';
+                                        }
+                                    });
+                                });
                             </script>
-                        
+            
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
                             <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
-
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     </header>
     <footer class="footer bg-black py-4">
@@ -253,5 +299,21 @@
     <div class="map-clean"></div>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/script.min.js"></script>
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var input = document.getElementById('searchInput').value.toLowerCase();
+            var cards = document.querySelectorAll('#products .card');
+            cards.forEach(function(card) {
+                var title = card.querySelector('.card-title').textContent.toLowerCase();
+                if (title.includes(input)) {
+                    card.parentElement.style.display = '';
+                } else {
+                    card.parentElement.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>
