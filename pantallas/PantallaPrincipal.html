@@ -253,21 +253,6 @@
                                         }
                                     }
                                 }
-            
-                                // Script para la búsqueda de productos
-                                document.getElementById('searchForm').addEventListener('submit', function(event) {
-                                    event.preventDefault();
-                                    var input = document.getElementById('searchInput').value.toLowerCase();
-                                    var cards = document.querySelectorAll('#productos-container .card');
-                                    cards.forEach(function(card) {
-                                        var title = card.querySelector('.card-title').textContent.toLowerCase();
-                                        if (title.includes(input)) {
-                                            card.parentElement.style.display = '';
-                                        } else {
-                                            card.parentElement.style.display = 'none';
-                                        }
-                                    });
-                                });
                             </script>
             
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -299,21 +284,5 @@
     <div class="map-clean"></div>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/script.min.js"></script>
-    <script>
-        document.getElementById('searchForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var input = document.getElementById('searchInput').value.toLowerCase();
-            var cards = document.querySelectorAll('#products .card');
-            cards.forEach(function(card) {
-                var title = card.querySelector('.card-title').textContent.toLowerCase();
-                if (title.includes(input)) {
-                    card.parentElement.style.display = '';
-                } else {
-                    card.parentElement.style.display = 'none';
-                }
-            });
-        });
-    </script>
-    
 </body>
 </html>
