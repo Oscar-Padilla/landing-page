@@ -60,7 +60,7 @@
                         </a>
             
                         <a href="PantallaPrincipal.html" style="text-decoration: none;">
-                            <button type="button" class="btn btn-outline-warning">Juguetes</button>
+                            <button type="button" class="btn btn-outline-warning">Productos</button>
                         </a>
 
                         <a href="../fav.html" style="text-decoration: none;">
@@ -127,7 +127,13 @@
                                         <input class="form-control me-2" type="password" placeholder="Contraseña" name="pass" id="password" autocomplete="off" required>
                                     </div>
                                 </div>
-                                <button type="submit" id="submit" class="btn btn-outline-success" style="margin-top: 5%;">Iniciar Sesión</button>
+                                <button type="submit" id="submit" class="btn btn-outline-success" style="margin-top: 5%;" onclick="iniciarSesion()">Iniciar Sesión</button>
+                                <script>
+                                    function iniciarSesion() {
+                                        // Redirigir a la página deseada
+                                        window.location.href = "../index.html";
+                                    }
+                                    </script>
                                 <br><br>
                                 <button type="reset" id="reset" class="btn btn-outline-danger">Borrar</button>
                             </form>
