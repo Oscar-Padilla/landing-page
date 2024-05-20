@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="Tienda de colecciobales de todo tipo desde videojuegos y jueguetes hasta comics y revistas, todo desde nuestra tienda online." />
+    <meta name="keywords" content="Comics, Juguetes, Videojuegos, Figuras" />
+    <meta name="author" content="
+    José Alexis Silva Guerrero
+    Erik Alejandro Ramirez de Lira,
+    Oscar Oziel Padilla,
+    Alan Eduardo Guevara Hernandez,
+    Michelle Guadalupe Villagomez Lopez,
+    Dominic Garcia" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Perfil de usuario</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="shortcut icon" href="assets/img/iconlog.png">
+</head>
+<body>
+    <nav class="navbar navbar-light navbar-expand-md fixed-top" id="mainNav">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a href="index.html" class="navbar-brand" style="margin-right: 10%;">
+                <img src="assets/img/logocompleto.png" alt="Logo Geek" title="logo de tienda" width="250px" 
+                style="filter: invert(100%);">
+            </a>
+
+            
+
+            <button data-bs-toggle="collapse" class="navbar-toggler navbar-toggler-right"
+             data-bs-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" 
+             aria-label="Toggle navigation" value="Menu">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item nav-link">
+                        <!-- Elementos de la barra de navegación -->
+
+                        <a href="index.html" style="text-decoration: none;">
+                            <button type="button" class="btn btn-outline-info">Home</button>
+                        </a>
+            
+                        <a href="pantallas/PantallaPrincipal.html" style="text-decoration: none;">
+                            <button type="button" class="btn btn-outline-warning">Juguetes</button>
+                        </a>
+
+                        <a href="fav.html" style="text-decoration: none;">
+                            <button type="button" class="btn btn-outline-danger">
+                                <i class="bi bi-heart-fill">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                         d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                    </svg>
+                                </i>
+                            </button>
+                        </a>
+
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-outline-info dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-fill">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                                    </svg>
+                                </i>
+                                <span id="usernameDisplay">Mi cuenta</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark position-absolute">
+                                <li><a class="dropdown-item" href="#">Órdenes de Compra</a></li>
+                                <li><a class="dropdown-item" href="pantallas/IniciarSesion.html">Iniciar sesión</a></li>
+                                <li><a class="dropdown-item" id="logoutLink" href="#">Cerrar sesión</a></li>
+                            </ul>
+                        </div>
+                        <a href="carrito.html" style="text-decoration: none;">
+                            <button type="button" class="btn btn-outline-success">
+                                <i class="bi bi-cart">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-cart" viewBox="0 0 16 16">
+                                        <path 
+                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                    </svg>
+                                </i>
+                                Carrito
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <h2>Perfil de Usuario</h2>
+        <form id="userForm">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" value="Oscar">
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" value="deska">
+            </div>
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo</label>
+                <input type="email" class="form-control" id="correo" value="oscar@email.com">
+            </div>
+            <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="direccion" value="Av. Adolfo López Mateos #1801 Ote. Fracc. Bona Gens, C.P. 20255 Aguascalientes">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" value="12345">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="editUser()">Editar</button>
+        </form>
+    </div>
+
+    
+    <script>
+        function editUser() {
+            // alert de boton
+            alert('Perfil actualizado.');
+        }
+    </script>
+
+<footer class="footer bg-black py-4 ">
+    <div class="container text-center">
+        <ul class="list-inline mb-3">
+            <li class="list-inline-item">
+                <a class="h6" href="#">Facebook</a>
+            </li>
+            <li class="list-inline-item">
+                <a class="h6" href="#">Instagram</a>
+            </li>
+            <li class="list-inline-item">
+                <a class="text-white h6" href="#">Términos y Condiciones</a>
+            </li>
+        </ul>
+        <small class="text-muted small mb-0 h6">&copy; 2024 Geek Paradise. Todos los derechos reservados.</small>
+    </div>
+</footer>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
+</body>
+</html>
