@@ -69,15 +69,17 @@
                             <button type="button" class="btn btn-outline-warning">Juguetes</button>
                         </a>
 
-                        <button type="button" class="btn btn-outline-danger">
-                            <i class="bi bi-heart-fill">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
-                                class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                     d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
-                                </svg>
-                            </i>
-                        </button>
+                        <a href="../fav.html" style="text-decoration: none;">
+                            <button type="button" class="btn btn-outline-danger">
+                                <i class="bi bi-heart-fill">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                         d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                    </svg>
+                                </i>
+                            </button>
+                        </a>
 
                         <div class="dropdown">
                             <button type="button" class="btn btn-outline-info dropdown-toggle" data-bs-toggle="dropdown">
@@ -154,10 +156,15 @@
                             </div>
 
                             <script>
+                                
+                            </script>
+                            
+                            <script>
                                 document.addEventListener('DOMContentLoaded', function() {
                                     fetch('../productos.json')
                                         .then(response => response.json())
-                                        .then(data => {
+                                        .then(productos => {
+                                            data = productos; // Asignamos el resultado de la petición a la variable data
                                             const container = document.getElementById('productos-container');
                                             data.forEach(producto => {
                                                 const card = `
@@ -172,17 +179,16 @@
                                                                 <p class="card-text h6 align-bottom"><strong>$${producto.precio}.00<small class="text-white small mb-0 h6"> MXN.</small></strong></p>
                                                             </div>
                                                             <div class="card-footer text-muted">
-                                                                <a href="#" style="margin-right:5px; text-decoration: none;">
-                                                                    <button type="button" class="btn btn-outline-danger">
-                                                                        <i class="bi bi-heart-fill">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
-                                                                            class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                                                                <path fill-rule="evenodd"
-                                                                                 d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
-                                                                            </svg>
-                                                                        </i>
-                                                                    </button>
-                                                                </a> 
+
+                                                                <button type="button" class="btn btn-outline-danger" onclick="agregarFavorito('${producto.nombre}')">
+                                                                    <i class="bi bi-heart-fill">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                                                        class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                                            <path fill-rule="evenodd"
+                                                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                                                        </svg>
+                                                                    </i>
+                                                                </button>
                                                                 <a href="#" style="text-decoration: none;">
                                                                     <button type="button" class="btn btn-outline-success">
                                                                         <i class="bi bi-cart">
@@ -193,6 +199,7 @@
                                                                         Carrito
                                                                     </button>
                                                                 </a>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -202,6 +209,19 @@
                                         })
                                         .catch(error => console.error('Error cargando los productos:', error));
                                 });
+                                function agregarFavorito(productoNombre) {
+                                        let producto = data.find(item => item.nombre === productoNombre);
+                                        if (producto) {
+                                            let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+                                            if (!favoritos.find(item => item.nombre === producto.nombre)) {
+                                                favoritos.push(producto);
+                                                localStorage.setItem('favoritos', JSON.stringify(favoritos));
+                                                alert('Producto agregado a favoritos');
+                                            } else {
+                                                alert('Este producto ya está en favoritos');
+                                            }
+                                        }
+                                    }
                             </script>
                         
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -235,125 +255,3 @@
     <script src="../assets/js/script.min.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <?php #session_start();?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="https://cloud.aguascalientes.tecnm.mx/site/img/logo.png">
-    <title>SAS</title>
-</head>
-<body>
-    <nav class="navbar navbar-light navbar-expand-md fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand">
-            <?php #echo $_SESSION["user"];?>
-            </a>
-            <a class="navbar-brand" href="logout.php">Cerrar Sesión</a>
-            <button data-bs-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-bs-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu">
-                <i class="fa fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <div class="dropdown border-0" style="--bs-body-bg: var(--bs-indigo);">
-                    <a class="navbar-brand" aria-expanded="false" data-bs-toggle="dropdown" href="#" target="_blank" style="--bs-body-bg: var(--bs-navbar-brand-hover-color);">Herramientas</a>
-                    <div class="dropdown-menu dropdown-menu-dark">
-                        <a class="dropdown-item" href="NuevoCliente.php" style="--bs-body-color: #ffffff;color: rgb(255,255,255);">Nuevo Cliente</a>
-                        <a class="dropdown-item" href="NuevaCita.php" style="--bs-body-color: #ffffff;color: rgb(255,255,255);">Nueva Cita</a>
-                        <a class="dropdown-item" href="ClientesExistentes.php" style="--bs-body-color: #ffffff;color: rgb(255,255,255);">Clientes Existentes</a>
-                        <a class="dropdown-item" href="CitasProgramadas.php" style="--bs-body-color: #ffffff;color: rgb(255,255,255);">Citas programadas</a>
-                    </div>
-                </div>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item nav-link">
-                        <img src="../assets/img/logo_tecnm.png" width="200" style="filter: invert(100%) saturate(0%);">
-                        <img src="../assets/img/Picsart_22-10-12_16-34-44-824.png" width="230">
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <header class="masthead" style="background-image: url('../assets/img/intro-bg.jpg');">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <h6 id="words" class="brand-heading">Bienvenido</h6>
-                        <script>
-                            var text = [
-                                    "Bienvenido",
-                                    "Welcome",
-                                    "Bem-vindo",
-                                    "受欢迎的",
-                                    "Bienvenu",
-                                    "Willkommen",
-                                    "Benvenuto",
-                                    "喜ばしい"];
-                            var counter = 0;
-                            var elem = document.getElementById("words");
-                            var inst = setInterval(change,3000);
-                            function change() {
-                                elem.innerHTML=text[counter];
-                                counter++;
-                                if (counter>=text.length) {
-                                    counter=0;
-                                    //clearInterval(inst);
-                                }
-                            }
-                        </script>
-                        <script lang="JavaScript">
-                            function Ver_Hora()
-                            {
-                                var mihora=new Date();
-                                var horas=mihora.getHours().toString();
-                                var minutos=mihora.getMinutes().toString();
-                                if (minutos.length==1){
-                                    minutos="0"+minutos;
-                                }
-                                document.forms[0].mireloj.value=horas+" : "+minutos;
-                            }
-                        </script>
-                        <form>
-                            <h1 style="font-size: 200%;">
-                                <input type="text" size="6" name="mireloj" style="background-color: transparent; border: transparent; color: white; text-align: center;">
-                            </h1>
-                        </form>
-                        <script lang="JavaScript">
-                            var r=setInterval("Ver_Hora()",500);
-                        </script>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="map-clean"></div>
-    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/js/script.min.js"></script>
-</body>
-</html> -->
