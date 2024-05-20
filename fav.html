@@ -214,21 +214,14 @@
                                                         producto.remove();
                                                     }
                                                     // Actualizar favoritos en localStorage y eliminar el producto
-                                                    let updatedFavorites = products.filter((_, index) => index != productoId);
+                                                    const updatedFavorites = products.filter((_, index) => index != productoId);
                                                     localStorage.setItem('favoritos', JSON.stringify(updatedFavorites));
-
-                                                    // Verificar si no quedan elementos en el localStorage
-                                                    if (updatedFavorites.length === 0) {
-                                                        localStorage.removeItem('favoritos');
-                                                        alert("El último producto ha sido eliminado de favoritos. La lista de favoritos está vacía.");
-                                                    } else {
-                                                        alert("Producto eliminado de favoritos.");
-                                                    }
+                                                    alert("Producto eliminado de favoritos.");
                                                 });
                                             });
                                         }
                                     };
-                            
+
                                     const favoritos = loadFavoritesFromLocalStorage();
                                     renderProducts(favoritos);
                                 });
