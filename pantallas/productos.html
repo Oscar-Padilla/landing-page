@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="Tienda de colecciobales de todo tipo desde videojuegos y jueguetes hasta comics y revistas, todo desde nuestra tienda online." />
+    <meta name="keywords" content="Comics, Juguetes, Videojuegos, Figuras" />
+    <meta name="author" content="
+    José Alexis Silva Guerrero
+    Erik Alejandro Ramirez de Lira,
+    Oscar Oziel Padilla,
+    Alan Eduardo Guevara Hernandez,
+    Michelle Guadalupe Villagomez Lopez,
+    Christopher Dominic García Sánchez" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Geek Paradise Tienda de coleccionables</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="shortcut icon" href="assets/img/iconlog.png">
+    <style>
+        .header{
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center;     /* Centra verticalmente */
+            height: 100vh;           /* O cualquier altura que desees */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+    </style>
+</head>
+<body>
+    <section id="Productos">
+        <div class="container">
+            <h1>Añadir de Productos</h1>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label for="productName">Nombre del Producto:</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Precio:</label>
+                    <input type="number" id="productPrice" required>
+                </div>
+                <div class="form-group">
+                    <label for="productImage">Imagen URL:</label>
+                    <input type="text" id="productImage" required>
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">Descripción:</label>
+                    <textarea id="productDescription" required></textarea>
+                </div>
+                <button type="submit" id="addProductButton">Agregar Producto</button>
+            </form>
+            <table id="productTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Imagen</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Los productos se insertarán aquí -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <a href="../pantallas/dashboard.html"><button type="button" class="btn btn-dark">Volver</button></a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const productForm = document.getElementById('productForm');
+        const productIdInput = document.getElementById('productId');
+        const productNameInput = document.getElementById('productName');
+        const productPriceInput = document.getElementById('productPrice');
+        const productImageInput = document.getElementById('productImage');
+        const productDescriptionInput = document.getElementById('productDescription');
+        const productTable = document.getElementById('productTable').querySelector('tbody');
+        const addProductButton = document.getElementById('addProductButton');
+    
+        let products = [
+            {
+                id: "1",
+                nombre: "Batman Returns Batman Michael Keaton Neca Articulado",
+                imagen: "images/Imagen1.jpg",
+                precio: "8200",
+                descripcion: "Batman 1989 Película Michael Keaton Figura de acción a escala 1:4: ¡Gran Batman!"
+            },
+            {
+                id: "2",
+                nombre: "DeLorean, Doc. Emmet, McFly en escala 8-1",
+                imagen: "images/bttf.jpeg",
+                precio: "2000",
+                descripcion: "Paquete coleccionable con los personajes principales de Volver al futuro, con figuras de 25 cm de alto"
+            },
+            {
+                id: "3",
+                nombre: "SWAMP THING VOL. 3",
+                imagen: "images/swamp.jpg",
+                precio: "410",
+                descripcion: "Colección de tapa dura de THE SAGA OF THE SWAMP THING "
+            },
+            {
+                id: "4",
+                nombre: "Edición coleccionista Hollow Knight",
+                imagen: "images/hk.jpeg",
+                precio: "1289",
+                descripcion: "Hollow Knight ya está disponible para PC, incluida una edición especial para coleccionistas"
+            },
+            {
+                id: "5",
+                nombre: "Hasbro Marvel Legends Series - Wolverine",
+                imagen: "images/im3.jpg",
+                precio: "1199",
+                descripcion: "El proyecto Arma X dotó a Wolverine de un esqueleto de adamantium"
+            },
+            {
+                id: "6",
+                nombre: "Manga Neon Genesis Evangelion Vol. 5",
+                imagen: "images/e2.jpg",
+                precio: "599",
+                descripcion: "Volumen número 5 del manga Neon Genesis Evangelion"
+            },
+            {
+                id: "7",
+                nombre: "Figura Revali The Legend of Zelda",
+                imagen: "images/rev.jpg",
+                precio: "4000",
+                descripcion: "Figura coleccionable del videojuego The Legend of Zelda del personaje Revali"
+            },
+            {
+                id: "8",
+                nombre: "Manga One Piece Vol. 100",
+                imagen: "images/im8.jpg",
+                precio: "15",
+                descripcion: "Manga del anime One piece Volúmen número 100 "
+            },
+            {
+                id: "9",
+                nombre: "Figura Spiderman",
+                imagen: "images/sp.jpg",
+                precio: "299",
+                descripcion: "Figura de acción de Spiderman de la película Spiderman into the spiderverse"
+            },
+            {
+                id: "10",
+                nombre: "Figura Goku",
+                imagen: "images/g.jpg",
+                precio: "15",
+                descripcion: "Figura coleccionable del personaje Goku del anime Dragon Ball Z"
+            }
+        ];
+    
+        renderProducts();
+    
+        productForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const id = productIdInput.value;
+            const name = productNameInput.value;
+            const price = productPriceInput.value;
+            const image = productImageInput.value;
+            const description = productDescriptionInput.value;
+    
+            if (id) {
+                updateProduct(id, name, price, image, description);
+            } else {
+                addProduct(name, price, image, description);
+            }
+    
+            productForm.reset();
+            productIdInput.value = '';
+            renderProducts();
+        });
+    
+        function addProduct(name, price, image, description) {
+            const id = new Date().getTime().toString();
+            products.push({ id, nombre: name, precio: price, imagen: image, descripcion: description });
+        }
+    
+        function updateProduct(id, name, price, image, description) {
+            products = products.map(product => product.id === id ? { id, nombre: name, precio: price, imagen: image, descripcion: description } : product);
+            addProductButton.textContent = 'Agregar Producto';
+        }
+    
+        function deleteProduct(id) {
+            products = products.filter(product => product.id !== id);
+            renderProducts();
+        }
+    
+        function editProduct(id) {
+            const product = products.find(product => product.id === id);
+            productIdInput.value = product.id;
+            productNameInput.value = product.nombre;
+            productPriceInput.value = product.precio;
+            productImageInput.value = product.imagen;
+            productDescriptionInput.value = product.descripcion;
+            addProductButton.textContent = 'Actualizar Producto';
+        }
+    
+        function renderProducts() {
+            productTable.innerHTML = '';
+            products.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.id}</td>
+                    <td>${product.nombre}</td>
+                    <td>${product.precio}</td>
+                    <td><img src="${product.imagen}" alt="${product.nombre}" width="50"></td>
+                    <td>${product.descripcion}</td>
+                    <td>
+                        <button onclick="editProduct('${product.id}')">Editar</button>
+                        <button onclick="deleteProduct('${product.id}')">Eliminar</button>
+                    </td>
+                `;
+                productTable.appendChild(row);
+            });
+        }
+    
+        window.deleteProduct = deleteProduct;
+        window.editProduct = editProduct;
+    
+        renderProducts();
+    });
+    
+    </script>
+
+
+    
+
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

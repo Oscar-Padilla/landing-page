@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "nombre": "Juan Perez",
+        "email": "juan.perez@example.com",
+        "telefono": "1234567890",
+        "direccion": "Calle Falsa 123"
+    },
+    {
+        "id": 2,
+        "nombre": "Maria Gomez",
+        "email": "maria.gomez@example.com",
+        "telefono": "0987654321",
+        "direccion": "Avenida Siempre Viva 456"
+    },
+    {
+        "id": 3,
+        "nombre": "Carlos Ramirez",
+        "email": "carlos.ramirez@example.com",
+        "telefono": "1122334455",
+        "direccion": "Boulevard de los Sueños Rotos 789"
+    },
+    {
+        "id": 4,
+        "nombre": "Ana Torres",
+        "email": "ana.torres@example.com",
+        "telefono": "6677889900",
+        "direccion": "Camino Real 101"
+    },
+    {
+        "id": 5,
+        "nombre": "Luis Fernandez",
+        "email": "luis.fernandez@example.com",
+        "telefono": "2233445566",
+        "direccion": "Plaza Mayor 202"
+    }
+]

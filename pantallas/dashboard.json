@@ -1,0 +1,62 @@
+[
+    {
+      "id": 1,
+      "cliente": "Juan Pérez",
+      "estado": "pendiente",
+      "precio": "8200"
+    },
+    {
+      "id": 2,
+      "cliente": "María López",
+      "estado": "entregado",
+      "precio": "410"
+    },
+    {
+      "id": 3,
+      "cliente": "Carlos Sánchez",
+      "estado": "pendiente",
+      "precio": "2000"
+    },
+    {
+      "id": 4,
+      "cliente": "Ana Gómez",
+      "estado": "entregado",
+      "precio": "1199"
+    },
+    {
+      "id": 5,
+      "cliente": "Luis Martínez",
+      "estado": "pendiente",
+      "precio": "599"
+    },
+    {
+      "id": 6,
+      "cliente": "Sofía Fernández",
+      "estado": "entregado",
+      "precio": "15"
+    },
+    {
+      "id": 7,
+      "cliente": "Miguel Torres",
+      "estado": "pendiente",
+      "precio": "4000"
+    },
+    {
+      "id": 8,
+      "cliente": "Lucía Morales",
+      "estado": "entregado",
+      "precio": "1199"
+    },
+    {
+      "id": 9,
+      "cliente": "Diego Rojas",
+      "estado": "pendiente",
+      "precio": "599"
+    },
+    {
+      "id": 10,
+      "cliente": "Elena Ramírez",
+      "estado": "entregado",
+      "precio": "15"
+    }
+]
