@@ -30,20 +30,6 @@
                 style="filter: invert(100%);">
             </a>
 
-            <div class="d-flex flex-grow-1 justify-content-center">
-                <form class="d-flex" id="searchForm" role="search">
-                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-warning" type="submit">
-                        <i class="bi bi-search">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                            </svg>
-                        </i>
-                    </button>
-                </form>
-                
-            </div>
-
             <button data-bs-toggle="collapse" class="navbar-toggler navbar-toggler-right"
              data-bs-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" 
              aria-label="Toggle navigation" value="Menu">
@@ -85,7 +71,7 @@
                                 <span id="usernameDisplay">Mi cuenta</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark position-absolute">
-                                <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                <li><a class="dropdown-item" href="../perfil.html">Ver perfil</a></li>
                                 <li><a class="dropdown-item" href="#">Órdenes de Compra</a></li>
                                 <li><a class="dropdown-item" href="IniciarSesion.html">Iniciar sesión</a></li>
                                 <li><a class="dropdown-item" id="logoutLink" href="#">Cerrar sesión</a></li>
@@ -144,28 +130,27 @@
             </div>
         </div>
 
-        <footer class="footer bg-black py-4 fixed-bottom">
-            <div class="container text-center">
-                <ul class="list-inline mb-3">
-                    <li class="list-inline-item">
-                        <a class="h6" href="https://www.facebook.com/profile.php?id=61558385277108&mibextid=ZbWKwL">Facebook</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="h6" href="https://www.instagram.com/geekparadise0/">Instagram</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="text-white h6" href="#">Términos y Condiciones</a>
-                    </li>
-                    <br><br>
-                <li class="list-inline-item">
-                    <a class="h5" href="contacto.html">Contacto</a>
-                </li>
-                </ul>
-                <small class="text-muted small mb-0 h6">&copy; 2024 Geek Paradise. Todos los derechos
-                    reservados.</small>
-            </div>
-        </footer>
     </header>
+    <footer class="footer bg-black py-4">
+        <div class="container text-center">
+            <ul class="list-inline mb-3">
+                <li class="list-inline-item">
+                    <a class="h6" href="https://www.facebook.com/profile.php?id=61558385277108&mibextid=ZbWKwL">Facebook</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="h6" href="https://www.instagram.com/geekparadise0/">Instagram</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="h6" href="../contacto.html">Contacto</a>
+                </li>
+                <br><br>
+                <li class="list-inline-item">
+                    <a class="text-white h6" href="#">Términos y Condiciones</a>
+                </li>
+            </ul>
+            <small class="text-muted small mb-0 h6">&copy; 2024 Geek Paradise. Todos los derechos reservados.</small>
+        </div>
+    </footer>
     <div class="map-clean"></div>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/script.min.js"></script>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="description"
-        content="Tienda de colecciobales de todo tipo desde videojuegos y jueguetes hasta comics y revistas, todo desde nuestra tienda online." />
+    content="Tienda de colecciobales de todo tipo desde videojuegos y jueguetes hasta comics y revistas, todo desde nuestra tienda online." />
     <meta name="keywords" content="Comics, Juguetes, Videojuegos, Figuras" />
     <meta name="author" content="
     José Alexis Silva Guerrero
@@ -11,16 +11,23 @@
     Oscar Oziel Padilla,
     Alan Eduardo Guevara Hernandez,
     Michelle Guadalupe Villagomez Lopez,
-    Christopher Dominic García Sánchez" />
+    Dominic Garcia" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Contacto</title>
+    <title>Geek Paradise Tienda de coleccionables</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="shortcut icon" href="assets/img/iconlog.png">
+    <style>
+        .card-img-top {
+            width: 100%;
+            height: 200px; /* Puedes ajustar esta altura según tus necesidades */
+            object-fit: cover; /* Esto asegura que la imagen se recorte correctamente */
+        }
+    </style>
 </head>
-<body>
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
     <nav class="navbar navbar-light navbar-expand-md fixed-top" id="mainNav">
         <div class="container d-flex align-items-center justify-content-between">
             <a href="index.html" class="navbar-brand" style="margin-right: 10%;">
@@ -92,25 +99,40 @@
             </div>
         </div>
     </nav>
-
-    <div class="container" style="margin-top: 80px;">
-        <h2>Contacto</h2>
-        <form id="contactForm">
-            <div class="mb-3">
-                <label for="email" class="form-label">Correo electrónico</label>
-                <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
+    <header class="masthead">
+        <div class="intro-body">
+            <div class="container" style="margin-top: 0%;">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <!--Productos-->
+                        <div class="container mt-5">
+                            <p class="h1">Contacto</p>
+                            <form id="contactForm">
+                                <div class="mb-3 h4">
+                                    <label for="email" class="form-label">Correo electrónico</label>
+                                    <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
+                                </div>
+                                <div class="mb-3 h4">
+                                    <label for="image" class="form-label">Adjuntar imagen</label>
+                                    <input type="file" class="form-control" id="image" accept="image/*">
+                                </div>
+                                <div class="mb-3 h4">
+                                    <label for="message" class="form-label">Mensaje</label>
+                                    <textarea class="form-control" id="message" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </form>
+    
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+    
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="image" class="form-label">Adjuntar imagen</label>
-                <input type="file" class="form-control" id="image" accept="image/*">
-            </div>
-            <div class="mb-3">
-                <label for="message" class="form-label">Mensaje</label>
-                <textarea class="form-control" id="message" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
-    </div>
+        </div>
+    </header>
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -118,8 +140,7 @@
             document.getElementById('contactForm').reset();
         });
     </script>
-    
-    <footer class="footer bg-black py-4 fixed-bottom">
+    <footer class="footer bg-black py-4">
         <div class="container text-center">
             <ul class="list-inline mb-3">
                 <li class="list-inline-item">
@@ -129,17 +150,18 @@
                     <a class="h6" href="https://www.instagram.com/geekparadise0/">Instagram</a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="text-white h6" href="#">Términos y Condiciones</a>
+                    <a class="h6" href="contacto.html">Contacto</a>
                 </li>
                 <br><br>
                 <li class="list-inline-item">
-                    <a class="h5" href="contacto.html">Contacto</a>
+                    <a class="text-white h6" href="#">Términos y Condiciones</a>
                 </li>
             </ul>
             <small class="text-muted small mb-0 h6">&copy; 2024 Geek Paradise. Todos los derechos reservados.</small>
         </div>
     </footer>
-</header>
-<div class="map-clean"></div>
+    <div class="map-clean"></div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
 </body>
 </html>
