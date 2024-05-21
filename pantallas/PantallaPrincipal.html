@@ -73,46 +73,21 @@
                 <form class="d-flex" id="searchForm" role="search">
                     <input class="form-control me-2" type="search" id="searchInput" placeholder="Search" aria-label="Search">
                     <div class="dropdown">
-                        <button class="btn btn-dark dropdown-toggle" type="button" id="filtroDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-warning dropdown-toggle" type="button" id="filtroDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-funnel">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
                                     <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"/>
                                   </svg>
                             </i>
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="filtroDropdown">
-                            <li><a class="dropdown-item" href="#" onclick="filtrar(true)">A-Z</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="filtrar(false)">Z-A</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="filtrar(false)">Mayor a menor</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="filtrar(true)">Menor a mayor</a></li>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#" onclick="ordenarProductos('aZ')">Nombre: A-Z</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="ordenarProductos('zA')">Nombre: Z-A</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="ordenarProductos('precioDesc')">Precio: Mayor a Menor</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="ordenarProductos('precioAsc')">Precio: Menor a Mayor</a></li>
                         </ul>
                     </div>
-                    
-                    <script>
-                        function filtrar(ascendente) {
-                            const cards = document.querySelectorAll('#productos-container .card');
-                            const container = document.getElementById('productos-container');
-                            let sortedCards = Array.from(cards);
-                    
-                            sortedCards.sort((a, b) => {
-                                const titleA = a.querySelector('.card-title').textContent;
-                                const titleB = b.querySelector('.card-title').textContent;
-                    
-                                if (ascendente) {
-                                    return titleA.localeCompare(titleB);
-                                } else {
-                                    return titleB.localeCompare(titleA);
-                                }
-                            });
-                    
-                            sortedCards.forEach(card => {
-                                container.appendChild(card.parentElement);
-                            });
-                        }
-                    </script>
-                    
                 </form>
-
             </div>
 
             <button data-bs-toggle="collapse" class="navbar-toggler navbar-toggler-right"
@@ -195,46 +170,69 @@
                                         .then(response => response.json())
                                         .then(productos => {
                                             data = productos; // Asignamos el resultado de la petición a la variable data
-                                            const container = document.getElementById('productos-container');
-                                            data.forEach(producto => {
-                                                const card = `
-                                                    <div class="col-md-4 mb-4">
-                                                        <div class="card text-white bg-dark mb-3 h-100">
-                                                            <img src="../${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
-                                                            <div class="card-header">
-                                                                <a href="Producto.html?producto=${encodeURIComponent(JSON.stringify(producto))}" class="card-title h4" style="margin:0; text-decoration: none;">${producto.nombre}</a>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <p class="card-text h6">${producto.descripcion}</p>
-                                                                <p class="card-text h6 align-bottom"><strong>$${producto.precio}.00<small class="text-white small mb-0 h6"> MXN.</small></strong></p>
-                                                            </div>
-                                                            <div class="card-footer text-muted">
-                                                                <button type="button" class="btn btn-outline-danger" onclick="agregarFavorito('${producto.nombre}')">
-                                                                    <i class="bi bi-heart-fill">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
-                                                                        class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
-                                                                        </svg>
-                                                                    </i>
-                                                                </button>
-                                                                <button type="button" class="btn btn-outline-success" onclick="agregarCarrito('${producto.nombre}')">
-                                                                    <i class="bi bi-cart">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                                                                        </svg>
-                                                                    </i>
-                                                                    Carrito
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                `;
-                                                container.insertAdjacentHTML('beforeend', card);
-                                            });
+                                            renderizarProductos(data);
                                         })
                                         .catch(error => console.error('Error cargando los productos:', error));
                                 });
-            
+                            
+                                function renderizarProductos(productos) {
+                                    const container = document.getElementById('productos-container');
+                                    container.innerHTML = ''; // Limpiamos el contenedor antes de agregar los productos
+                                    productos.forEach(producto => {
+                                        const card = `
+                                            <div class="col-md-4 mb-4">
+                                                <div class="card text-white bg-dark mb-3 h-100">
+                                                    <img src="../${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
+                                                    <div class="card-header">
+                                                        <a href="Producto.html?producto=${encodeURIComponent(JSON.stringify(producto))}" class="card-title h4" style="margin:0; text-decoration: none;">${producto.nombre}</a>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <p class="card-text h6">${producto.descripcion}</p>
+                                                        <p class="card-text h6 align-bottom"><strong>$${producto.precio}.00<small class="text-white small mb-0 h6"> MXN.</small></strong></p>
+                                                    </div>
+                                                    <div class="card-footer text-muted">
+                                                        <button type="button" class="btn btn-outline-danger" onclick="agregarFavorito('${producto.nombre}')">
+                                                            <i class="bi bi-heart-fill">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                                                </svg>
+                                                            </i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline-success" onclick="agregarCarrito('${producto.nombre}')">
+                                                            <i class="bi bi-cart">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                                                </svg>
+                                                            </i>
+                                                            Carrito
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        container.insertAdjacentHTML('beforeend', card);
+                                    });
+                                }
+                            
+                                function ordenarProductos(criterio) {
+                                    let productosOrdenados = [...data];
+                                    switch (criterio) {
+                                        case 'precioDesc':
+                                            productosOrdenados.sort((a, b) => b.precio - a.precio);
+                                            break;
+                                        case 'precioAsc':
+                                            productosOrdenados.sort((a, b) => a.precio - b.precio);
+                                            break;
+                                        case 'aZ':
+                                            productosOrdenados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+                                            break;
+                                        case 'zA':
+                                            productosOrdenados.sort((a, b) => b.nombre.localeCompare(a.nombre));
+                                            break;
+                                    }
+                                    renderizarProductos(productosOrdenados);
+                                }
+                            
                                 function agregarFavorito(productoNombre) {
                                     let producto = data.find(item => item.nombre === productoNombre);
                                     if (producto) {
@@ -248,7 +246,7 @@
                                         }
                                     }
                                 }
-
+                            
                                 function agregarCarrito(productoNombre) {
                                     let producto = data.find(item => item.nombre === productoNombre);
                                     if (producto) {
