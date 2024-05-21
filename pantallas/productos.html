@@ -120,10 +120,6 @@
                     <input type="number" id="productPrice" required>
                 </div>
                 <div class="form-group">
-                    <label for="productImage">Imagen URL:</label>
-                    <input type="text" id="productImage" required>
-                </div>
-                <div class="form-group">
                     <label for="productDescription">Descripción:</label>
                     <textarea id="productDescription" required></textarea>
                 </div>
@@ -135,7 +131,6 @@
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Precio</th>
-                        <th>Imagen</th>
                         <th>Descripción</th>
                         <th>Acciones</th>
                     </tr>
@@ -155,7 +150,6 @@
         const productIdInput = document.getElementById('productId');
         const productNameInput = document.getElementById('productName');
         const productPriceInput = document.getElementById('productPrice');
-        const productImageInput = document.getElementById('productImage');
         const productDescriptionInput = document.getElementById('productDescription');
         const productTable = document.getElementById('productTable').querySelector('tbody');
         const addProductButton = document.getElementById('addProductButton');
@@ -240,7 +234,6 @@
             const id = productIdInput.value;
             const name = productNameInput.value;
             const price = productPriceInput.value;
-            const image = productImageInput.value;
             const description = productDescriptionInput.value;
     
             if (id) {
@@ -254,12 +247,12 @@
             renderProducts();
         });
     
-        function addProduct(name, price, image, description) {
+        function addProduct(name, price, description) {
             const id = new Date().getTime().toString();
             products.push({ id, nombre: name, precio: price, imagen: image, descripcion: description });
         }
     
-        function updateProduct(id, name, price, image, description) {
+        function updateProduct(id, name, prices, description) {
             products = products.map(product => product.id === id ? { id, nombre: name, precio: price, imagen: image, descripcion: description } : product);
             addProductButton.textContent = 'Agregar Producto';
         }
@@ -274,7 +267,6 @@
             productIdInput.value = product.id;
             productNameInput.value = product.nombre;
             productPriceInput.value = product.precio;
-            productImageInput.value = product.imagen;
             productDescriptionInput.value = product.descripcion;
             addProductButton.textContent = 'Actualizar Producto';
         }
@@ -287,7 +279,6 @@
                     <td>${product.id}</td>
                     <td>${product.nombre}</td>
                     <td>${product.precio}</td>
-                    <td><img src="${product.imagen}" alt="${product.nombre}" width="50"></td>
                     <td>${product.descripcion}</td>
                     <td>
                         <button onclick="editProduct('${product.id}')">Editar</button>
