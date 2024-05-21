@@ -94,7 +94,11 @@
                             onApprove: function (data, actions) {
                                 alert("Pago Aprobado")
                                 actions.order.capture().then(function (detalles) {
-
+                                    console.log(detalles);
+                                    // Guardar los datos del producto en el LocalStorage
+                                    let compras = JSON.parse(localStorage.getItem('compras')) || [];
+                                    compras.push(productoData);
+                                    localStorage.setItem('compras', JSON.stringify(compras));
                                 });
                             },
                             onCancel: function (data) {
@@ -171,8 +175,8 @@
                                 <span id="usernameDisplay">Mi cuenta</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark position-absolute">
-                                <li><a class="dropdown-item" href="#">Ver perfil</a></li>
-                                <li><a class="dropdown-item" href="#">Órdenes de Compra</a></li>
+                                <li><a class="dropdown-item" href="../perfil.html">Ver perfil</a></li>
+                                <li><a class="dropdown-item" href="../ordenes.html">Órdenes de Compra</a></li>
                                 <li><a class="dropdown-item" href="IniciarSesion.html">Iniciar sesión</a></li>
                                 <li><a class="dropdown-item" id="logoutLink" href="#">Cerrar sesión</a></li>
                             </ul>
@@ -332,10 +336,10 @@
                                         const newComment = document.createElement('div');
                                         newComment.classList.add('comment');
                                         newComment.innerHTML = `
-                <p><strong>${commentName}</strong></p>
-                <p>${commentText}</p>
-                <p>Calificación: ${ratingValue} estrellas</p>
-            `;
+                                            <p><strong>${commentName}</strong></p>
+                                            <p>${commentText}</p>
+                                            <p>Calificación: ${ratingValue} estrellas</p>
+                                        `;
                                         commentsContainer.appendChild(newComment);
 
                                         // Limpiar el formulario
@@ -383,5 +387,4 @@
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/script.min.js"></script>
 </body>
-
 </html>

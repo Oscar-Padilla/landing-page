@@ -100,104 +100,97 @@
     </nav>
     <header class="masthead">
         <div class="intro-body">
-            <div class="container" style="margin-top: 7%;">
+            <div class="container" style="margin-top: 2%;">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <!--Productos-->
                         <div class="container mt-5">
-                            <div class="row" id="productos-container">
-                                <!-- Aquí se insertarán las tarjetas de productos -->
-                            </div>
-    
+                            <p class="h1">Órdenes de compra</p>
+                            <h1 style="font-size: 100%;">
+                                <table class="table text-white">
+                                    <thead>
+                                        <tr>
+                                            <th>No. de Órden</th>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Precio</th>
+                                            <th>Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="orderTableBody">
+                                        <!-- Las filas de la tabla se insertarán aquí mediante JavaScript -->
+                                    </tbody>
+                                </table>
+                            </h1>
+
                             <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    const loadFavoritesFromLocalStorage = () => {
-                                        return JSON.parse(localStorage.getItem('favoritos')) || [];
-                                    };
-                            
-                                    const renderProducts = (products) => {
-                                        const container = document.getElementById('productos-container');
-                                        if (products.length === 0) {
-                                            container.innerHTML = '<p class="h4">No tienes productos en favoritos.</p>';
-                                        } else {
-                                            products.forEach((producto, index) => {
-                                                const card = `
-                                                    <div class="col-md-4 mb-4" id="producto-${index}">
-                                                        <div class="card text-white bg-dark mb-3 h-100">
-                                                            <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
-                                                            <div class="card-header">
-                                                                <p class="card-title h4" style="margin:0; text-decoration: none; color: #42dca3;">${producto.nombre}</p>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <p class="card-text h6">${producto.descripcion}</p>
-                                                                <p class="card-text h6 align-bottom"><strong>$${producto.precio}.00<small class="text-white small mb-0 h6"> MXN.</small></strong></p>
-                                                            </div>
-                                                            <div class="card-footer text-muted">
-                                                                <button type="button" class="btn btn-outline-danger eliminar-producto" data-id="${index}">
-                                                                    <i class="bi bi-heartbreak-fill">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
-                                                                            <path d="M8.931.586 7 3l1.5 4-2 3L8 15C22.534 5.396 13.757-2.21 8.931.586M7.358.77 5.5 3 7 7l-1.5 3 1.815 4.537C-6.533 4.96 2.685-2.467 7.358.77"/>
-                                                                        </svg>
-                                                                    </i>
-                                                                </button>
-                                                                <button type="button" class="btn btn-outline-success" onclick="agregarCarrito('${producto.nombre}')">
-                                                                    <i class="bi bi-cart">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                                                                        </svg>
-                                                                    </i>
-                                                                    Carrito
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                `;
-                                                container.insertAdjacentHTML('beforeend', card);
-                                            });
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    // Obtener el cuerpo de la tabla
+                                    const tableBody = document.getElementById('orderTableBody');
 
-                                            // Añadir evento de clic para eliminar tarjetas
-                                            document.querySelectorAll('.eliminar-producto').forEach(button => {
-                                                button.addEventListener('click', function () {
-                                                    const productoId = this.getAttribute('data-id');
-                                                    const producto = document.getElementById(`producto-${productoId}`);
-                                                    if (producto) {
-                                                        producto.remove();
-                                                    }
-                                                    // Actualizar favoritos en localStorage y eliminar el producto
-                                                    const updatedFavorites = products.filter((_, index) => index != productoId);
-                                                    localStorage.setItem('favoritos', JSON.stringify(updatedFavorites));
-                                                    alert("Producto eliminado de favoritos.");
-                                                });
-                                            });
-                                        }
-                                    };
+                                    // Obtener las compras del localStorage
+                                    const compras = JSON.parse(localStorage.getItem('compras')) || [];
 
-                                    const favoritos = loadFavoritesFromLocalStorage();
-                                    renderProducts(favoritos);
-                                });
-                                function agregarCarrito(productoNombre) {
-                                    let producto = data.find(item => item.nombre === productoNombre);
-                                    if (producto) {
-                                        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-                                        if (!carrito.find(item => item.nombre === producto.nombre)) {
-                                            carrito.push(producto);
-                                            localStorage.setItem('carrito', JSON.stringify(carrito));
-                                            alert('Producto agregado al carrito');
-                                        } else {
-                                            alert('Este producto ya está en el carrito');
-                                        }
+                                    // Función para renderizar las compras en la tabla
+                                    function renderCompras() {
+                                        // Limpiar el contenido actual de la tabla
+                                        tableBody.innerHTML = '';
+
+                                        // Recorrer cada compra y crear una fila
+                                        compras.forEach((compra, index) => {
+                                            const row = document.createElement('tr');
+
+                                            // Crear las celdas
+                                            const noOrdenCell = document.createElement('td');
+                                            const nombreCell = document.createElement('td');
+                                            const descripcionCell = document.createElement('td');
+                                            const precioCell = document.createElement('td');
+                                            const opcionesCell = document.createElement('td');
+
+                                            // Asignar el contenido a las celdas
+                                            noOrdenCell.textContent = index + 1;
+                                            nombreCell.textContent = compra.nombre;
+                                            descripcionCell.textContent = compra.descripcion;
+                                            precioCell.textContent = "$"+ compra.precio+".00 MXN";
+
+                                            // Crear el botón de eliminar
+                                            const deleteButton = document.createElement('button');
+                                            deleteButton.textContent = 'Eliminar';
+                                            deleteButton.classList.add('btn', 'btn-danger');
+                                            deleteButton.onclick = () => {
+                                                eliminarCompra(index);
+                                            };
+
+                                            // Añadir el botón de eliminar a la celda de opciones
+                                            opcionesCell.appendChild(deleteButton);
+
+                                            // Añadir las celdas a la fila
+                                            row.appendChild(noOrdenCell);
+                                            row.appendChild(nombreCell);
+                                            row.appendChild(descripcionCell);
+                                            row.appendChild(precioCell);
+                                            row.appendChild(opcionesCell);
+
+                                            // Añadir la fila al cuerpo de la tabla
+                                            tableBody.appendChild(row);
+                                        });
                                     }
-                                }
-                                window.addEventListener('load', () => {
-                                    localStorage.clear();
+
+                                    // Función para eliminar una compra
+                                    function eliminarCompra(index) {
+                                        compras.splice(index, 1);
+                                        localStorage.setItem('compras', JSON.stringify(compras));
+                                        renderCompras();
+                                    }
+
+                                    // Renderizar las compras al cargar la página
+                                    renderCompras();
                                 });
                             </script>
                             
-    
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
                             <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
-    
                         </div>
                     </div>
                 </div>

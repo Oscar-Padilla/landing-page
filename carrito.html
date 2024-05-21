@@ -65,7 +65,28 @@
                             onApprove: function (data, actions) {
                                 alert("Pago Aprobado")
                                 actions.order.capture().then(function (detalles) {
+                                    // Obtener los detalles de la compra desde el localStorage
+                                    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
+                                    // Agregar cada elemento del carrito como una compra individual al array 'compras'
+                                    const compras = carrito.map(item => {
+                                        return {
+                                            nombre: item.nombre,
+                                            descripcion: item.descripcion,
+                                            precio: item.precio
+                                        };
+                                    });
+
+                                    // Obtener las compras anteriores del localStorage y agregar las nuevas compras
+                                    const comprasAnteriores = JSON.parse(localStorage.getItem('compras')) || [];
+                                    const todasLasCompras = comprasAnteriores.concat(compras);
+                                    localStorage.setItem('compras', JSON.stringify(todasLasCompras));
+
+                                    // Limpiar el carrito después de realizar la compra
+                                    localStorage.removeItem('carrito');
+
+                                    // Redireccionar a la página de órdenes después de realizar la compra
+                                    window.location.href = 'ordenes.html';
                                 });
                             },
                             onCancel: function (data) {
@@ -127,7 +148,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark position-absolute">
                                 <li><a class="dropdown-item" href="perfil.html">Ver perfil</a></li>
-                                <li><a class="dropdown-item" href="#">Órdenes de Compra</a></li>
+                                <li><a class="dropdown-item" href="ordenes.html">Órdenes de Compra</a></li>
                                 <li><a class="dropdown-item" href="pantallas/IniciarSesion.html">Iniciar sesión</a></li>
                                 <li><a class="dropdown-item" id="logoutLink" href="#">Cerrar sesión</a></li>
                             </ul>
