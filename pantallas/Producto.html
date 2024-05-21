@@ -94,7 +94,7 @@
                             onApprove: function (data, actions) {
                                 alert("Pago Aprobado")
                                 actions.order.capture().then(function (detalles) {
-
+                                    console.log(detalles);
                                 });
                             },
                             onCancel: function (data) {
