@@ -237,9 +237,9 @@
             const description = productDescriptionInput.value;
     
             if (id) {
-                updateProduct(id, name, price, image, description);
+                updateProduct(id, name, price, description);
             } else {
-                addProduct(name, price, image, description);
+                addProduct(name, price, description);
             }
     
             productForm.reset();
@@ -249,11 +249,11 @@
     
         function addProduct(name, price, description) {
             const id = new Date().getTime().toString();
-            products.push({ id, nombre: name, precio: price, imagen: image, descripcion: description });
+            products.push({ id, nombre: name, precio: price, descripcion: description });
         }
     
         function updateProduct(id, name, prices, description) {
-            products = products.map(product => product.id === id ? { id, nombre: name, precio: price, imagen: image, descripcion: description } : product);
+            products = products.map(product => product.id === id ? { id, nombre: name, precio: price, descripcion: description } : product);
             addProductButton.textContent = 'Agregar Producto';
         }
     
